@@ -1,0 +1,48 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+fieldset, select {
+  border: none;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1.5rem 0;
+}
+
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-container input {
+  border: none;
+}
+.form-container .search-btn {
+  background: transparent;
+  border: none;
+}
+
+.state-selections {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.state-selections .switch-container {
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (min-width: 375px) {
+  main {
+    width: 90%;
+    margin: 0 auto;
+  }
+}/*# sourceMappingURL=index.css.map */

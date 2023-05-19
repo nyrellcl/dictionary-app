@@ -1,0 +1,47 @@
+@use "sass:math";
+@import "./Global-scss/placeholder", "./Global-scss/function";
+
+*{
+    @extend %base;
+}
+
+fieldset, select{
+    border: none;
+}
+
+.nav-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: rem(24) 0 ;
+}
+
+.form-container{
+    input{
+        border: none;
+    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .search-btn{
+        background: transparent;
+        border: none;
+    }
+}
+
+.state-selections{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .switch-container{
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media only screen and (min-width: 375px){
+    main{
+        width: 90%;
+        margin: 0 auto;
+    }
+}
