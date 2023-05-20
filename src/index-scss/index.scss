@@ -1,47 +1,162 @@
 @use "sass:math";
-@import "./Global-scss/placeholder", "./Global-scss/function";
+@import "./Global-scss/placeholder", "./Global-scss/function",
+  "./Global-scss/colors";
 
-*{
-    @extend %base;
+* {
+  @extend %base;
 }
 
-fieldset, select{
+fieldset,
+select {
+  border: none;
+}
+
+small {
+  color: $text-light-grey;
+}
+
+.dark-bg{
+    background-color: $dark-bg;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: rem(24) 0;
+}
+
+.line{
+    height: 1px;
+    display: inline-block;
+    width: 80%;
+    background: $accent-2;
+}
+
+.form-container {
+  input {
+    background-color: transparent;
     border: none;
+    height: rem(48);
+    width: 100%;
+    padding-left: rem(24);
+  }
+  border-radius: rem(16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $search-bg;
+  .search-btn {
+    background: transparent;
+    border: none;
+    padding: rem(24) rem(24) rem(24) 0;
+  }
 }
 
-.nav-bar{
+.word-pronunciation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: rem(24);
+  padding-bottom: rem(31);
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: rem(7);
+    &__phonetics {
+      color: $accent;
+      letter-spacing: rem(1);
+      font-size: rem(18);
+    }
+  }
+}
+
+.noun-container {
+  @extend %width-margin;
+  h3 {
+    padding-bottom: rem(31);
+    font-style: italic;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin: rem(24) 0 ;
-}
-
-.form-container{
-    input{
-        border: none;
+    gap: rem(19);
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: rem(13);
+    padding-top: rem(16);
+    li {
+      line-height: rem(24);
     }
+  }
+  .synonym-container {
+    padding-top: rem(24);
+    padding-bottom: rem(31);
+  }
+}
+.state-selections {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .switch-container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    .search-btn{
-        background: transparent;
-        border: none;
-    }
+  }
 }
 
-.state-selections{
+.verb-container {
+  @extend %width-margin;
+  h3 {
+    padding-bottom: rem(32);
+    font-style: italic;
     display: flex;
     align-items: center;
-    justify-content: center;
-    .switch-container{
-        display: flex;
-        align-items: center;
+    gap: rem(19);
+  }
+  &__list {
+    padding-top: rem(17);
+  }
+  .example-container{
+    padding-top: rem(13);
+    q{
+        color: $text-light-grey;
     }
+  }
 }
 
-@media only screen and (min-width: 375px){
-    main{
-        width: 90%;
-        margin: 0 auto;
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid $accent-2;
+  margin-top: rem(32);
+  padding-bottom: rem(85);
+  p {
+    padding-top: rem(24);
+  }
+}
+
+@media only screen and (min-width: 375px) {
+  main {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .word-pronunciation {
+    &__container {
+      &__term {
+        font-size: rem(32);
+      }
     }
+  }
+
+  .noun-container {
+    h3 {
+      font-size: rem(18);
+    }
+    small {
+      font-size: 1rem;
+    }
+  }
 }

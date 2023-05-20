@@ -3,11 +3,24 @@
   margin: 0;
   box-sizing: border-box;
   text-decoration: none;
-  list-style: none;
 }
 
-fieldset, select {
+.verb-container, .noun-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+fieldset,
+select {
   border: none;
+}
+
+small {
+  color: hsl(0deg, 0%, 51%);
+}
+
+.dark-bg {
+  background-color: hsl(0deg, 0%, 2%);
 }
 
 .nav-bar {
@@ -17,17 +30,70 @@ fieldset, select {
   margin: 1.5rem 0;
 }
 
+.line {
+  height: 1px;
+  display: inline-block;
+  width: 80%;
+  background: hsl(0deg, 0%, 91%);
+}
+
 .form-container {
+  border-radius: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: hsl(0deg, 0%, 96%);
 }
 .form-container input {
+  background-color: transparent;
   border: none;
+  height: 3rem;
+  width: 100%;
+  padding-left: 1.5rem;
 }
 .form-container .search-btn {
   background: transparent;
   border: none;
+  padding: 1.5rem 1.5rem 1.5rem 0;
+}
+
+.word-pronunciation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  padding-bottom: 1.9375rem;
+}
+.word-pronunciation__container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4375rem;
+}
+.word-pronunciation__container__phonetics {
+  color: hsl(274deg, 82%, 60%);
+  letter-spacing: 0.0625rem;
+  font-size: 1.125rem;
+}
+
+.noun-container h3 {
+  padding-bottom: 1.9375rem;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 1.1875rem;
+}
+.noun-container__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8125rem;
+  padding-top: 1rem;
+}
+.noun-container__list li {
+  line-height: 1.5rem;
+}
+.noun-container .synonym-container {
+  padding-top: 1.5rem;
+  padding-bottom: 1.9375rem;
 }
 
 .state-selections {
@@ -40,9 +106,48 @@ fieldset, select {
   align-items: center;
 }
 
+.verb-container h3 {
+  padding-bottom: 2rem;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 1.1875rem;
+}
+.verb-container__list {
+  padding-top: 1.0625rem;
+}
+.verb-container .example-container {
+  padding-top: 0.8125rem;
+}
+.verb-container .example-container q {
+  color: hsl(0deg, 0%, 51%);
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid hsl(0deg, 0%, 91%);
+  margin-top: 2rem;
+  padding-bottom: 5.3125rem;
+}
+.footer-container p {
+  padding-top: 1.5rem;
+}
+
 @media only screen and (min-width: 375px) {
   main {
     width: 90%;
     margin: 0 auto;
+  }
+  .word-pronunciation__container__term {
+    font-size: 2rem;
+  }
+  .noun-container h3 {
+    font-size: 1.125rem;
+  }
+  .noun-container small {
+    font-size: 1rem;
   }
 }/*# sourceMappingURL=index.css.map */

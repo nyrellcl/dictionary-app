@@ -13,7 +13,11 @@ interface Definition {
   }>;
   meanings: Array<{
     partOfSpeech: string;
-    definitions: Array<{ definition: string; synonyms: string }>;
+    definitions: Array<{
+      definition: string;
+      synonyms: string[];
+      example: string;
+    }>;
   }>;
 }
 
@@ -33,6 +37,11 @@ function App() {
 
   const handleModeSwitch = () => {
     setIsLight(!isLight);
+    const getHTMLElement: HTMLHtmlElement | null =
+      document.querySelector("html");
+    if (getHTMLElement && isLight) {
+      getHTMLElement.classList.toggle("dark-bg");
+    }
     console.log("switch");
   };
 
@@ -69,7 +78,6 @@ function App() {
               name="font-select"
               id="FONTS"
               className="font-selection"
-              placeholder=""
             >
               <option value="Serif">Serif</option>
               <option value="Monospace">Mono</option>
@@ -118,7 +126,11 @@ function App() {
         </nav>
       </header>
       <section className="definitions-container">
-        <form onSubmit={handleWordSearch} method="POST" className="form-container">
+        <form
+          onSubmit={handleWordSearch}
+          method="POST"
+          className="form-container"
+        >
           <input
             name="search-word"
             id="search-word"
@@ -135,38 +147,71 @@ function App() {
 
         {definitions.length > 0 ? (
           <div>
-            <article className="word-pronounciation">
-              <h2 className="word-pronounciation__term">
-                {definitions[0].word}
-              </h2>
-              <span className="word-pronounciation__phonetics">
-                {definitions[0].phonetics[0].text}
-              </span>
+            <article className="word-pronunciation">
+              <div className="word-pronunciation__container">
+                <h2 className="word-pronunciation__container__term">
+                  {definitions[0].word}
+                </h2>
+                <span className="word-pronunciation__container__phonetics">
+                  {definitions[0].phonetics[0].text}
+                </span>
+              </div>
+              <div className="word-pronunciation__audio">
+                <button type="button">Play</button>
+              </div>
             </article>
 
             {definitions.map((definition, index) => (
               <>
                 <article className="noun-container" key={index}>
-                  <h3>{definition.meanings[0].partOfSpeech}</h3>
+                  <h3>
+                    {definition.meanings[0].partOfSpeech}{" "}
+                    <span className="line" />
+                  </h3>
                   <small>Meaning</small>
-                  <ul>
+                  <ul className="noun-container__list">
                     {definition.meanings[0].definitions.map((item, index) => (
                       <li key={index}>{item.definition}</li>
                     ))}
                   </ul>
+                  <article className="synonym-container">
+                    <p>
+                      Synonyms{" "}
+                      {definition.meanings[0].definitions[0].synonyms.map(
+                        (syn, synIndex) => (
+                          <span key={synIndex}>{syn}</span>
+                        )
+                      )}
+                    </p>
+                  </article>
                 </article>
                 <article
                   className="verb-container"
                   key={definition.meanings[1].partOfSpeech}
                 >
-                  <h3>{definition.meanings[1].partOfSpeech}</h3>
+                  <h3>
+                    {definition.meanings[1].partOfSpeech}{" "}
+                    <span className="line" />
+                  </h3>
                   <small>Meaning</small>
-                  <ul>
+                  <ul className="verb-container__list">
                     {definition.meanings[1].definitions.map((items, index) => (
                       <li key={index}>{items.definition}</li>
                     ))}
                   </ul>
+
+                  <article className="example-container">
+                    <q>{definition.meanings[1].definitions[0].example}</q>
+                  </article>
                 </article>
+                <footer className="footer-container">
+                  <p>
+                    Source{" "}
+                    <a href={`https://en.wiktionary.org/wiki/${word}`}>
+                      https://en.wiktionary.org/wiki/{word}
+                    </a>
+                  </p>
+                </footer>
               </>
             ))}
           </div>
