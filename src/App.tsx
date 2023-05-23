@@ -36,13 +36,15 @@ function App() {
   };
 
   const handleModeSwitch = () => {
-    setIsLight(!isLight);
     const getHTMLElement: HTMLHtmlElement | null =
       document.querySelector("html");
+
     if (getHTMLElement && isLight) {
       getHTMLElement.classList.toggle("dark-bg");
+    } else {
+      getHTMLElement?.classList.remove("dark-bg");
     }
-    console.log("switch");
+    setIsLight((prevIsLight) => !prevIsLight);
   };
 
   const handleWordSearch = async (e: React.FormEvent) => {
@@ -71,7 +73,7 @@ function App() {
           </div>
 
           <fieldset className="state-selections">
-            <label htmlFor="font-select">{font}</label>
+            <label htmlFor="font-select" className={isLight ? undefined : "label-dark"}>{font}</label>
             <select
               value={font}
               onChange={handleFontChange}
@@ -129,11 +131,12 @@ function App() {
         <form
           onSubmit={handleWordSearch}
           method="POST"
-          className="form-container"
+          className={isLight ? "form-container" : "form-container search-dark"}
         >
           <input
             name="search-word"
             id="search-word"
+            required
             type="text"
             value={word}
             onChange={(e) => setWord(e.target.value)}
@@ -149,7 +152,13 @@ function App() {
           <div>
             <article className="word-pronunciation">
               <div className="word-pronunciation__container">
-                <h2 className="word-pronunciation__container__term">
+                <h2
+                  className={
+                    isLight
+                      ? "word-pronunciation__container__term"
+                      : "word-pronunciation__container__term dark"
+                  }
+                >
                   {definitions[0].word}
                 </h2>
                 <span className="word-pronunciation__container__phonetics">
@@ -164,22 +173,24 @@ function App() {
             {definitions.map((definition, index) => (
               <>
                 <article className="noun-container" key={index}>
-                  <h3>
+                  <h3 className={isLight ? undefined : "dark"}>
                     {definition.meanings[0].partOfSpeech}{" "}
                     <span className="line" />
                   </h3>
                   <small>Meaning</small>
                   <ul className="noun-container__list">
                     {definition.meanings[0].definitions.map((item, index) => (
-                      <li key={index}>{item.definition}</li>
+                      <li key={index} className={isLight ? undefined : "dark"}>
+                        {item.definition}
+                      </li>
                     ))}
                   </ul>
                   <article className="synonym-container">
-                    <p>
-                      Synonyms{" "}
+                    <p className={isLight ? undefined : "label-dark"}>
+                      Synonyms: {" "}
                       {definition.meanings[0].definitions[0].synonyms.map(
                         (syn, synIndex) => (
-                          <span key={synIndex}>{syn}</span>
+                          <span key={synIndex} className="label-accent">{syn}</span>
                         )
                       )}
                     </p>
@@ -189,14 +200,16 @@ function App() {
                   className="verb-container"
                   key={definition.meanings[1].partOfSpeech}
                 >
-                  <h3>
+                  <h3 className={isLight ? undefined : "dark"}>
                     {definition.meanings[1].partOfSpeech}{" "}
                     <span className="line" />
                   </h3>
                   <small>Meaning</small>
                   <ul className="verb-container__list">
                     {definition.meanings[1].definitions.map((items, index) => (
-                      <li key={index}>{items.definition}</li>
+                      <li key={index} className={isLight ? undefined : "dark"}>
+                        {items.definition}
+                      </li>
                     ))}
                   </ul>
 
@@ -205,9 +218,9 @@ function App() {
                   </article>
                 </article>
                 <footer className="footer-container">
-                  <p>
-                    Source{" "}
-                    <a href={`https://en.wiktionary.org/wiki/${word}`}>
+                  <p className={isLight ? undefined : "label-dark"}>
+                    Source: {" "}
+                    <a href={`https://en.wiktionary.org/wiki/${word}`} className={isLight ? undefined : "label-dark"}>
                       https://en.wiktionary.org/wiki/{word}
                     </a>
                   </p>
@@ -216,7 +229,9 @@ function App() {
             ))}
           </div>
         ) : (
-          <p>Enter a word to search.</p>
+          <article className="search-CTA">
+            <p>Enter a word to search.</p>
+          </article>
         )}
       </section>
     </main>

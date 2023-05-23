@@ -19,6 +19,29 @@ small {
     background-color: $dark-bg;
 }
 
+.paragraph-dark{
+    color: #ffff;
+}
+
+.search-CTA{
+    display: flex;
+    align-items: center;
+    height: 50vh;
+    flex-direction: column;
+    justify-content: center;
+    p{
+        font-size: rem(18);
+    }
+}
+
+.label-dark{
+    color: #ffff;
+}
+
+.label-accent{
+    color: $accent;
+}
+
 .nav-bar {
   display: flex;
   align-items: center;
@@ -34,12 +57,15 @@ small {
 }
 
 .form-container {
-  input {
+    input {
     background-color: transparent;
     border: none;
     height: rem(48);
     width: 100%;
     padding-left: rem(24);
+    &:-webkit-autofill:hover {
+        background-color: transparent;
+    }
   }
   border-radius: rem(16);
   display: flex;
@@ -51,6 +77,13 @@ small {
     border: none;
     padding: rem(24) rem(24) rem(24) 0;
   }
+}
+
+.form-container.search-dark{
+    background-color: $search-dark-bg;
+    input{
+        color: #ffff;
+    }
 }
 
 .word-pronunciation {
@@ -104,6 +137,17 @@ small {
   }
 }
 
+.noun-container{
+    .dark{
+       color: #ffff;
+    }
+    &__list{
+        .dark{
+            color: #ffff;
+        }
+    }
+}
+
 .verb-container {
   @extend %width-margin;
   h3 {
@@ -122,6 +166,17 @@ small {
         color: $text-light-grey;
     }
   }
+}
+
+.verb-container{
+    .dark{
+        color: #ffff;
+    }
+    &__list{
+        .dark{
+            color: #ffff;
+        }
+    }
 }
 
 .footer-container {
@@ -147,9 +202,18 @@ small {
     &__container {
       &__term {
         font-size: rem(32);
+        color: $text-color-light;
       }
     }
   }
+
+  .word-pronunciation{
+    &__container{
+        &__term.dark{
+            color: #ffff;
+        }
+    }
+}
 
   .noun-container {
     h3 {
