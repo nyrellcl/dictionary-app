@@ -73,7 +73,12 @@ function App() {
           </div>
 
           <fieldset className="state-selections">
-            <label htmlFor="font-select" className={isLight ? undefined : "label-dark"}>{font}</label>
+            <label
+              htmlFor="font-select"
+              className={isLight ? undefined : "label-dark"}
+            >
+              {font}
+            </label>
             <select
               value={font}
               onChange={handleFontChange}
@@ -172,57 +177,72 @@ function App() {
 
             {definitions.map((definition, index) => (
               <>
-                <article className="noun-container" key={index}>
-                  <h3 className={isLight ? undefined : "dark"}>
-                    {definition.meanings[0].partOfSpeech}{" "}
-                    <span className="line" />
-                  </h3>
-                  <small>Meaning</small>
-                  <ul className="noun-container__list">
-                    {definition.meanings[0].definitions.map((item, index) => (
-                      <li key={index} className={isLight ? undefined : "dark"}>
-                        {item.definition}
-                      </li>
-                    ))}
-                  </ul>
-                  <article className="synonym-container">
-                    <p className={isLight ? undefined : "label-dark"}>
-                      Synonyms: {" "}
-                      {definition.meanings[0].definitions[0].synonyms.map(
-                        (syn, synIndex) => (
-                          <span key={synIndex} className="label-accent">{syn}</span>
-                        )
-                      )}
-                    </p>
-                  </article>
-                </article>
-                <article
-                  className="verb-container"
-                  key={definition.meanings[1].partOfSpeech}
-                >
-                  <h3 className={isLight ? undefined : "dark"}>
-                    {definition.meanings[1].partOfSpeech}{" "}
-                    <span className="line" />
-                  </h3>
-                  <small>Meaning</small>
-                  <ul className="verb-container__list">
-                    {definition.meanings[1].definitions.map((items, index) => (
-                      <li key={index} className={isLight ? undefined : "dark"}>
-                        {items.definition}
-                      </li>
-                    ))}
-                  </ul>
+                <section className="term-container" key={index}>
+                  {definition.meanings.map((meaning, meaningIdx) => (
+                    <article className="noun-container" key={meaningIdx}>
+                      <h3 className={isLight ? undefined : "dark"}>
+                        {meaning.partOfSpeech} <span className="line" />
+                      </h3>
+                      <small>Meaning</small>
+                      <ul className="noun-container__list">
+                        {meaning.definitions.map(
+                          (meaningItem, meaningItemIdx) => (
+                            <li
+                              key={meaningItemIdx}
+                              className={isLight ? undefined : "dark"}
+                            >
+                              {meaningItem.definition}
+                            </li>
+                          )
+                        )}
+                      </ul>
+                      {meaning.definitions[0].example ? (
+                        <q>{meaning.definitions[0].example}</q>
+                      ) : null}
 
-                  <article className="example-container">
-                    <q>{definition.meanings[1].definitions[0].example}</q>
-                  </article>
-                </article>
+                      {meaning.definitions[0].synonyms.length > 0 ? (
+                        <article className="synonym-container">
+                          <p className={isLight ? undefined : "label-dark"}>
+                            Synonyms:{" "}
+                            {meaning.definitions[0].synonyms.map(
+                              (syn, synIndex) => (
+                                <span key={synIndex} className="label-accent">
+                                  {syn}
+                                </span>
+                              )
+                            )}
+                          </p>
+                        </article>
+                      ) : null}
+                    </article>
+                  ))}
+                </section>
                 <footer className="footer-container">
                   <p className={isLight ? undefined : "label-dark"}>
-                    Source: {" "}
-                    <a href={`https://en.wiktionary.org/wiki/${word}`} className={isLight ? undefined : "label-dark"}>
+                    Source:{" "}
+                    <a
+                      href={`https://en.wiktionary.org/wiki/${word}`}
+                      className={isLight ? undefined : "label-dark"}
+                    >
                       https://en.wiktionary.org/wiki/{word}
                     </a>
+                    <span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="14"
+                        viewBox="0 0 14 14"
+                      >
+                        <path
+                          fill="none"
+                          stroke="#838383"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="1.5"
+                          d="M6.09 3.545H2.456A1.455 1.455 0 0 0 1 5v6.545A1.455 1.455 0 0 0 2.455 13H9a1.455 1.455 0 0 0 1.455-1.455V7.91m-5.091.727 7.272-7.272m0 0H9m3.636 0V5"
+                        />
+                      </svg>
+                    </span>
                   </p>
                 </footer>
               </>
@@ -230,7 +250,9 @@ function App() {
           </div>
         ) : (
           <article className="search-CTA">
-            <p>Enter a word to search.</p>
+            <p className={isLight ? undefined : "label-dark"}>
+              Enter a word to search.
+            </p>
           </article>
         )}
       </section>

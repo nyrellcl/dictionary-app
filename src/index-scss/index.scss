@@ -224,3 +224,59 @@ small {
     }
   }
 }
+
+@media only screen and (min-width: 768px){
+    .word-pronunciation{
+        &__container{
+            &__term{
+                font-size: rem(64);
+            }
+            &__phonetics{
+                font-size: rem(24);
+            }
+        }
+    }
+
+    .noun-container{
+        h3{
+            font-size: rem(24)
+        }
+        small{
+            font-size: rem(20);
+        }
+        li{
+            font-size: rem(18);
+        }
+        .synonym-container{
+            p{
+                font-size: rem(20);
+            }
+        }
+    }
+
+    .verb-container{
+        h3{
+            font-size: rem(24);
+        }
+        small{
+            font-size: rem(20);
+        }
+        &__list{
+            font-size: rem(18);
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    main{
+        width: 50%;
+    }
+
+    .word-pronunciation{
+        &__container{
+            &__term{
+                font-size: rem(64);
+            }
+        }
+    }
+}

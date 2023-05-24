@@ -200,4 +200,41 @@ small {
   .noun-container small {
     font-size: 1rem;
   }
+}
+@media only screen and (min-width: 768px) {
+  .word-pronunciation__container__term {
+    font-size: 4rem;
+  }
+  .word-pronunciation__container__phonetics {
+    font-size: 1.5rem;
+  }
+  .noun-container h3 {
+    font-size: 1.5rem;
+  }
+  .noun-container small {
+    font-size: 1.25rem;
+  }
+  .noun-container li {
+    font-size: 1.125rem;
+  }
+  .noun-container .synonym-container p {
+    font-size: 1.25rem;
+  }
+  .verb-container h3 {
+    font-size: 1.5rem;
+  }
+  .verb-container small {
+    font-size: 1.25rem;
+  }
+  .verb-container__list {
+    font-size: 1.125rem;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  main {
+    width: 50%;
+  }
+  .word-pronunciation__container__term {
+    font-size: 4rem;
+  }
 }/*# sourceMappingURL=index.css.map */
