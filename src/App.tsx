@@ -302,13 +302,7 @@ function App() {
               </>
             ))}
           </div>
-        ) : (
-          <article className="search-CTA">
-            <p className={isLight ? undefined : "label-dark"}>
-              Enter a word to search.
-            </p>
-          </article>
-        )}
+        ) : null}
       </section>
     </main>
   );
