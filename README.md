@@ -20,7 +20,7 @@ Your users should be able to:
 
 - Search for words using the input field(DONE)
 - See the Free Dictionary API's response for the searched word(DONE)
-- See a form validation message when trying to submit a blank form
+- See a form validation message when trying to submit a blank form(DONE)
 - Play the audio file for a word when it's available(DONE)
 - Switch between serif, sans serif, and monospace fonts(DONE; needs styling work)
 - Switch between light and dark themes(DONE)

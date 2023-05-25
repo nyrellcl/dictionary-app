@@ -28,24 +28,24 @@ function App() {
   const [font, setFont] = useState<string>("Serif");
   const [inputError, setInputError] = useState<string>("");
 
-  //remove useEffect after challenge submission
-  useEffect(()=>{
-    const fetchWordDefinitions = async () =>{
+  useEffect(() => {
+    const fetchWordDefinitions = async () => {
       try {
         const res = await fetchDefinitions(word);
-        if (res.length === 0){
-          setInputError("No Definitions Found")
-        } else{
+        if (res.length === 0) {
+          setInputError("No Definitions Found");
+          setDefinitions([]);
+        } else {
           setDefinitions(res);
-  
         }
       } catch (error) {
         console.log(error);
         setDefinitions([]);
       }
-    }
-    fetchWordDefinitions()
-  },[word])
+    };
+    fetchWordDefinitions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleFontChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFont(e.target.value);
@@ -79,30 +79,28 @@ function App() {
 
     const inputRegEx = /^[a-zA-Z]+$/;
 
-    if (word.trim() ==="") {
+    if (word.trim() === "") {
       setInputError("Whoops, can't be empty...");
+      setDefinitions([]);
     } else if (!inputRegEx.test(word)) {
-      return setInputError("Whoops, can't contain numbers...");
-    } else{
-      setInputError("")
+      setInputError("Whoops, can't contain numbers...");
+      setDefinitions([]);
+    } else {
+      setInputError("");
     }
 
-    //uncomment after challenge submitted to Frontend mentor
-    // try {
-    //   const res = await fetchDefinitions(word);
-    //   if (res.length === 0){
-    //     setInputError("No Definitions Found")
-    //   } else{
-    //     setDefinitions(res);
-
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    //   setDefinitions([]);
-    // }
+    try {
+      const res = await fetchDefinitions(word);
+      if (res.length === 0) {
+        setInputError("No Definitions Found");
+      } else {
+        setDefinitions(res);
+      }
+    } catch (error) {
+      console.log(error);
+      setDefinitions([]);
+    }
   };
-
- 
 
   return (
     <main style={fontStyles}>
@@ -193,7 +191,7 @@ function App() {
             <img src={searchIcon} alt="search-icon" />
           </button>
         </form>
-          {inputError ? <p className="error-message">{inputError}</p> : null}
+        {inputError ? <p className="error-message">{inputError}</p> : null}
 
         {definitions.length > 0 ? (
           <div>
