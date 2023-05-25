@@ -15,6 +15,10 @@ small {
   color: $text-light-grey;
 }
 
+q{
+    color: $text-light-grey;
+}
+
 .dark-bg{
     background-color: $dark-bg;
 }
@@ -102,6 +106,12 @@ small {
       font-size: rem(18);
     }
   }
+  &__audio{
+    button{
+        border: none;
+        background: transparent;
+    }
+  }
 }
 
 .noun-container {
@@ -162,9 +172,6 @@ small {
   }
   .example-container{
     padding-top: rem(13);
-    q{
-        color: $text-light-grey;
-    }
   }
 }
 

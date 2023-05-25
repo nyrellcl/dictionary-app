@@ -18,6 +18,10 @@ small {
   color: hsl(0deg, 0%, 51%);
 }
 
+q {
+  color: hsl(0deg, 0%, 51%);
+}
+
 .dark-bg {
   background-color: hsl(0deg, 0%, 2%);
 }
@@ -106,6 +110,10 @@ small {
   letter-spacing: 0.0625rem;
   font-size: 1.125rem;
 }
+.word-pronunciation__audio button {
+  border: none;
+  background: transparent;
+}
 
 .noun-container h3 {
   padding-bottom: 1.9375rem;
@@ -157,9 +165,6 @@ small {
 }
 .verb-container .example-container {
   padding-top: 0.8125rem;
-}
-.verb-container .example-container q {
-  color: hsl(0deg, 0%, 51%);
 }
 
 .verb-container .dark {

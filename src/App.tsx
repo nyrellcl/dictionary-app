@@ -35,6 +35,14 @@ function App() {
     fontFamily: font,
   };
 
+  const handleAudioPlay = () =>{
+    //when clicked audio should play
+    //extract audio object when user clicks on play button svg
+
+    const audioEl = new Audio(definitions[0].phonetics[0].audio);
+    audioEl.play()
+  }
+
   const handleModeSwitch = () => {
     const getHTMLElement: HTMLHtmlElement | null =
       document.querySelector("html");
@@ -171,7 +179,20 @@ function App() {
                 </span>
               </div>
               <div className="word-pronunciation__audio">
-                <button type="button">Play</button>
+                {definitions[0].phonetics[0].audio ? (<svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="75"
+                    height="75"
+                    viewBox="0 0 75 75"
+                    className="word-pronunciation__audio__btn"
+                    onClick={handleAudioPlay}
+                  >
+                    <g fill="#A445ED" fillRule="evenodd">
+                      <circle cx="37.5" cy="37.5" r="37.5" opacity=".25" />
+                      <path d="M29 27v21l21-10.5z" />
+                    </g>
+                  </svg>): null}
+                  
               </div>
             </article>
 
@@ -226,7 +247,7 @@ function App() {
                     >
                       https://en.wiktionary.org/wiki/{word}
                     </a>
-                    <span>
+                    <span style={{ marginLeft: "1rem" }}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="14"
@@ -236,9 +257,9 @@ function App() {
                         <path
                           fill="none"
                           stroke="#838383"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="1.5"
                           d="M6.09 3.545H2.456A1.455 1.455 0 0 0 1 5v6.545A1.455 1.455 0 0 0 2.455 13H9a1.455 1.455 0 0 0 1.455-1.455V7.91m-5.091.727 7.272-7.272m0 0H9m3.636 0V5"
                         />
                       </svg>
