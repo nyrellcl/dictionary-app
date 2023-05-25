@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Switch } from "@mui/material";
 import { fetchDefinitions } from "./api/api";
 import logo from "./assets/images/logo.svg";
@@ -22,10 +22,30 @@ interface Definition {
 }
 
 function App() {
-  const [word, setWord] = useState<string>("");
+  const [word, setWord] = useState<string>("keyboard"); //change default state after challenge submission
   const [definitions, setDefinitions] = useState<Definition[]>([]);
   const [isLight, setIsLight] = useState<boolean>(true);
   const [font, setFont] = useState<string>("Serif");
+  const [inputError, setInputError] = useState<string>("");
+
+  //remove useEffect after challenge submission
+  useEffect(()=>{
+    const fetchWordDefinitions = async () =>{
+      try {
+        const res = await fetchDefinitions(word);
+        if (res.length === 0){
+          setInputError("No Definitions Found")
+        } else{
+          setDefinitions(res);
+  
+        }
+      } catch (error) {
+        console.log(error);
+        setDefinitions([]);
+      }
+    }
+    fetchWordDefinitions()
+  },[word])
 
   const handleFontChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFont(e.target.value);
@@ -35,13 +55,12 @@ function App() {
     fontFamily: font,
   };
 
-  const handleAudioPlay = () =>{
+  const handleAudioPlay = () => {
     //when clicked audio should play
     //extract audio object when user clicks on play button svg
-
     const audioEl = new Audio(definitions[0].phonetics[0].audio);
-    audioEl.play()
-  }
+    audioEl.play();
+  };
 
   const handleModeSwitch = () => {
     const getHTMLElement: HTMLHtmlElement | null =
@@ -58,17 +77,32 @@ function App() {
   const handleWordSearch = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (word.trim() === "") {
-      return;
+    const inputRegEx = /^[a-zA-Z]+$/;
+
+    if (word.trim() ==="") {
+      setInputError("Whoops, can't be empty...");
+    } else if (!inputRegEx.test(word)) {
+      return setInputError("Whoops, can't contain numbers...");
+    } else{
+      setInputError("")
     }
-    try {
-      const res = await fetchDefinitions(word);
-      setDefinitions(res);
-    } catch (error) {
-      console.log(error);
-      setDefinitions([]);
-    }
+
+    //uncomment after challenge submitted to Frontend mentor
+    // try {
+    //   const res = await fetchDefinitions(word);
+    //   if (res.length === 0){
+    //     setInputError("No Definitions Found")
+    //   } else{
+    //     setDefinitions(res);
+
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    //   setDefinitions([]);
+    // }
   };
+
+ 
 
   return (
     <main style={fontStyles}>
@@ -149,7 +183,6 @@ function App() {
           <input
             name="search-word"
             id="search-word"
-            required
             type="text"
             value={word}
             onChange={(e) => setWord(e.target.value)}
@@ -160,6 +193,7 @@ function App() {
             <img src={searchIcon} alt="search-icon" />
           </button>
         </form>
+          {inputError ? <p className="error-message">{inputError}</p> : null}
 
         {definitions.length > 0 ? (
           <div>
@@ -179,7 +213,8 @@ function App() {
                 </span>
               </div>
               <div className="word-pronunciation__audio">
-                {definitions[0].phonetics[0].audio ? (<svg
+                {definitions[0].phonetics[0].audio ? (
+                  <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="75"
                     height="75"
@@ -191,8 +226,8 @@ function App() {
                       <circle cx="37.5" cy="37.5" r="37.5" opacity=".25" />
                       <path d="M29 27v21l21-10.5z" />
                     </g>
-                  </svg>): null}
-                  
+                  </svg>
+                ) : null}
               </div>
             </article>
 

@@ -63,6 +63,12 @@ q {
   background: hsl(0deg, 0%, 91%);
 }
 
+.error-message {
+  color: hsl(0deg, 100%, 66%);
+  font-size: 1.25rem;
+  margin-top: 0.5rem;
+}
+
 .form-container {
   border-radius: 1rem;
   display: flex;
@@ -110,9 +116,16 @@ q {
   letter-spacing: 0.0625rem;
   font-size: 1.125rem;
 }
-.word-pronunciation__audio button {
-  border: none;
-  background: transparent;
+.word-pronunciation__audio__btn {
+  cursor: pointer;
+}
+.word-pronunciation__audio__btn g:hover circle, .word-pronunciation__audio__btn g:focus circle {
+  transition: all 250ms ease-in-out;
+  opacity: 1;
+}
+.word-pronunciation__audio__btn g:hover path, .word-pronunciation__audio__btn g:focus path {
+  transition: all 250ms ease-in-out;
+  fill: white;
 }
 
 .noun-container h3 {
@@ -134,6 +147,15 @@ q {
 .noun-container .synonym-container {
   padding-top: 1.5rem;
   padding-bottom: 1.9375rem;
+}
+.noun-container .synonym-container span {
+  font-weight: 700;
+  cursor: pointer;
+}
+.noun-container .synonym-container span:hover, .noun-container .synonym-container span:focus {
+  text-decoration: underline;
+  -webkit-text-decoration-color: hsl(274deg, 82%, 60%);
+          text-decoration-color: hsl(274deg, 82%, 60%);
 }
 
 .state-selections {

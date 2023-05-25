@@ -15,35 +15,35 @@ small {
   color: $text-light-grey;
 }
 
-q{
-    color: $text-light-grey;
+q {
+  color: $text-light-grey;
 }
 
-.dark-bg{
-    background-color: $dark-bg;
+.dark-bg {
+  background-color: $dark-bg;
 }
 
-.paragraph-dark{
-    color: #ffff;
+.paragraph-dark {
+  color: #ffff;
 }
 
-.search-CTA{
-    display: flex;
-    align-items: center;
-    height: 50vh;
-    flex-direction: column;
-    justify-content: center;
-    p{
-        font-size: rem(18);
-    }
+.search-CTA {
+  display: flex;
+  align-items: center;
+  height: 50vh;
+  flex-direction: column;
+  justify-content: center;
+  p {
+    font-size: rem(18);
+  }
 }
 
-.label-dark{
-    color: #ffff;
+.label-dark {
+  color: #ffff;
 }
 
-.label-accent{
-    color: $accent;
+.label-accent {
+  color: $accent;
 }
 
 .nav-bar {
@@ -53,22 +53,28 @@ q{
   margin: rem(24) 0;
 }
 
-.line{
-    height: 1px;
-    display: inline-block;
-    width: 80%;
-    background: $accent-2;
+.line {
+  height: 1px;
+  display: inline-block;
+  width: 80%;
+  background: $accent-2;
+}
+
+.error-message{
+    color: $error;
+    font-size: rem(20);
+    margin-top: rem(8);
 }
 
 .form-container {
-    input {
+  input {
     background-color: transparent;
     border: none;
     height: rem(48);
     width: 100%;
     padding-left: rem(24);
     &:-webkit-autofill:hover {
-        background-color: transparent;
+      background-color: transparent;
     }
   }
   border-radius: rem(16);
@@ -83,11 +89,11 @@ q{
   }
 }
 
-.form-container.search-dark{
-    background-color: $search-dark-bg;
-    input{
-        color: #ffff;
-    }
+.form-container.search-dark {
+  background-color: $search-dark-bg;
+  input {
+    color: #ffff;
+  }
 }
 
 .word-pronunciation {
@@ -106,10 +112,22 @@ q{
       font-size: rem(18);
     }
   }
-  &__audio{
-    button{
-        border: none;
-        background: transparent;
+  &__audio {
+    &__btn {
+      cursor: pointer;
+      g {
+        &:hover,
+        &:focus {
+          circle {
+            transition: all 250ms ease-in-out;
+            opacity: 1;
+          }
+          path {
+            transition: all 250ms ease-in-out;
+            fill: #ffff;
+          }
+        }
+      }
     }
   }
 }
@@ -135,6 +153,14 @@ q{
   .synonym-container {
     padding-top: rem(24);
     padding-bottom: rem(31);
+    span{
+        font-weight: 700;
+        cursor: pointer;
+        &:hover,&:focus{
+            text-decoration: underline;
+            text-decoration-color: $accent;
+        }
+    }
   }
 }
 .state-selections {
@@ -147,15 +173,15 @@ q{
   }
 }
 
-.noun-container{
-    .dark{
-       color: #ffff;
+.noun-container {
+  .dark {
+    color: #ffff;
+  }
+  &__list {
+    .dark {
+      color: #ffff;
     }
-    &__list{
-        .dark{
-            color: #ffff;
-        }
-    }
+  }
 }
 
 .verb-container {
@@ -170,20 +196,20 @@ q{
   &__list {
     padding-top: rem(17);
   }
-  .example-container{
+  .example-container {
     padding-top: rem(13);
   }
 }
 
-.verb-container{
-    .dark{
-        color: #ffff;
+.verb-container {
+  .dark {
+    color: #ffff;
+  }
+  &__list {
+    .dark {
+      color: #ffff;
     }
-    &__list{
-        .dark{
-            color: #ffff;
-        }
-    }
+  }
 }
 
 .footer-container {
@@ -214,13 +240,13 @@ q{
     }
   }
 
-  .word-pronunciation{
-    &__container{
-        &__term.dark{
-            color: #ffff;
-        }
+  .word-pronunciation {
+    &__container {
+      &__term.dark {
+        color: #ffff;
+      }
     }
-}
+  }
 
   .noun-container {
     h3 {
@@ -232,58 +258,58 @@ q{
   }
 }
 
-@media only screen and (min-width: 768px){
-    .word-pronunciation{
-        &__container{
-            &__term{
-                font-size: rem(64);
-            }
-            &__phonetics{
-                font-size: rem(24);
-            }
-        }
+@media only screen and (min-width: 768px) {
+  .word-pronunciation {
+    &__container {
+      &__term {
+        font-size: rem(64);
+      }
+      &__phonetics {
+        font-size: rem(24);
+      }
     }
+  }
 
-    .noun-container{
-        h3{
-            font-size: rem(24)
-        }
-        small{
-            font-size: rem(20);
-        }
-        li{
-            font-size: rem(18);
-        }
-        .synonym-container{
-            p{
-                font-size: rem(20);
-            }
-        }
+  .noun-container {
+    h3 {
+      font-size: rem(24);
     }
+    small {
+      font-size: rem(20);
+    }
+    li {
+      font-size: rem(18);
+    }
+    .synonym-container {
+      p {
+        font-size: rem(20);
+      }
+    }
+  }
 
-    .verb-container{
-        h3{
-            font-size: rem(24);
-        }
-        small{
-            font-size: rem(20);
-        }
-        &__list{
-            font-size: rem(18);
-        }
+  .verb-container {
+    h3 {
+      font-size: rem(24);
     }
+    small {
+      font-size: rem(20);
+    }
+    &__list {
+      font-size: rem(18);
+    }
+  }
 }
 
-@media only screen and (min-width: 1200px){
-    main{
-        width: 50%;
-    }
+@media only screen and (min-width: 1200px) {
+  main {
+    width: 50%;
+  }
 
-    .word-pronunciation{
-        &__container{
-            &__term{
-                font-size: rem(64);
-            }
-        }
+  .word-pronunciation {
+    &__container {
+      &__term {
+        font-size: rem(64);
+      }
     }
+  }
 }
