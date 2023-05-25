@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { Switch } from "@mui/material";
-import { fetchDefinitions } from "./api/api";
+import { DictionaryFacade } from "./api/api";
 import logo from "./assets/images/logo.svg";
 import searchIcon from "./assets/images/icon-search.svg";
 
@@ -31,7 +31,8 @@ function App() {
   useEffect(() => {
     const fetchWordDefinitions = async () => {
       try {
-        const res = await fetchDefinitions(word);
+        const dictionaryFacade = new DictionaryFacade()
+        const res = await dictionaryFacade.fetchDefinitions(word)
         if (res.length === 0) {
           setInputError("No Definitions Found");
           setDefinitions([]);
@@ -90,7 +91,8 @@ function App() {
     }
 
     try {
-      const res = await fetchDefinitions(word);
+      const newSearchesFacade = new DictionaryFacade()
+      const res = await newSearchesFacade.fetchDefinitions(word);
       if (res.length === 0) {
         setInputError("No Definitions Found");
       } else {
