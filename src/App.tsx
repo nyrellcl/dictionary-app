@@ -113,12 +113,12 @@ function App() {
           </div>
 
           <fieldset className="state-selections">
-            <label
+            {/* <label
               htmlFor="font-select"
               className={isLight ? undefined : "label-dark"}
             >
               {font}
-            </label>
+            </label> */}
             <select
               value={font}
               onChange={handleFontChange}
