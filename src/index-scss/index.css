@@ -90,6 +90,7 @@ q {
   background: transparent;
   border: none;
   padding: 1.5rem 1.5rem 1.5rem 0;
+  cursor: pointer;
 }
 
 .form-container.search-dark {
